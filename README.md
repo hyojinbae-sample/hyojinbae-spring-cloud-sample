@@ -74,3 +74,45 @@ curl -X POST http://localhost:8081/bus/refresh
 ```
 ※ある1つのアプリで/bus/refreshするだけで、すべてのアプリの設定が更新される
 
+## 設定の暗号化
+DB接続先などの情報がうっかり漏洩するのを防ぐ
+
+[参考したサイト](https://patrickgrimard.io/2016/03/04/encrypting-and-decrypting-configuration-property-values-in-spring-cloud/)
+https://www.youtube.com/watch?v=1mwDM5xbWvU
+
+### 事前準備
+[Java Cryptography Extension (JCE) Unlimited Strength をダウンロード](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
+
+以前のファイルのbackupし、上記のファイルで置き換える（要解凍）
+
+```
+cd $JAVA_HOME/jre/lib/security
+sudo mv US_export_policy.jar US_export_policy.jar.bak
+sudo mv local_policy.jar local_policy.jar.bak
+```
+
+キー生成
+
+```
+keytool -genkeypair -alias mytestkey -keyalg RSA \
+  -dname "CN=Web Server,OU=Unit,O=Organization,L=City,S=State,C=US" \
+  -keypass changeme -keystore server.jks -storepass letmein \
+  -validity 365
+```
+
+管理者権限でcmdを実行（windowsの場合)
+※Javaのbinパスは適宜変更してください。
+```
+cd "C:\Program Files\Java\jdk1.8.0_144\bin"
+keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O=Organization,L=City,S=State,C=US" -keypass changeme -keystore %HOMEPATH%\server.jks -storepass letmein -validity 365
+```
+
+### 値を暗号化/複合化する
+```
+curl -d localhost:8888/encrypt 'Hello World!'
+```
+
+```
+curl -d localhost:8888/decrypt 'xxxxxxxxxxxxxxxx'
+```
