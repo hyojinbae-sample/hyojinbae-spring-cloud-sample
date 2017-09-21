@@ -127,4 +127,9 @@ curl -d localhost:8888/encrypt 'Hello World!'
 curl -d localhost:8888/decrypt 'xxxxxxxxxxxxxxxx'
 ```
 
+### 試す
+- http://localhost:8081/username
+- http://localhost:8081/h2-console
 
+- http://localhost:8082/username
+- http://localhost:8082/h2-console

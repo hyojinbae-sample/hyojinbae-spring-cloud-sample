@@ -1,6 +1,7 @@
 package com.hyojinbae.spring.cloud.sample.hello.world.config.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -19,11 +20,13 @@ public class HelloWorldConfigClient2Application {
 @RefreshScope
 @RestController
 class ClientController {
-    @Autowired
-    private Environment environment;
 
-    @RequestMapping("/index")
-    public String query(@RequestParam("env") String env) {
-        return String.format("Application name: Client1(%s=%s)", env, environment.getProperty(env));
+    @Value("${spring.datasource.username}")
+    private String userName;
+
+    @RequestMapping("/username")
+    public String query() {
+        return this.userName;
     }
+
 }
