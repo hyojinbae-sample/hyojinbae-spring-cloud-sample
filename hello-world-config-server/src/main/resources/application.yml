@@ -12,7 +12,7 @@ management:
     enabled: false
 encrypt:
   key-store:
-    location: file:${user.home}/server.jks # path for windows?
+    location: classpath:/server.jks
     password: letmein
     alias: mytestkey
     secret: changeme

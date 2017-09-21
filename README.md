@@ -108,7 +108,17 @@ cd "C:\Program Files\Java\jdk1.8.0_144\bin"
 keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O=Organization,L=City,S=State,C=US" -keypass changeme -keystore %HOMEPATH%\server.jks -storepass letmein -validity 365
 ```
 
+※現時点で1.3.2.RELEASEでは動かないため、1.3.1.RELEASEを利用している
+
 ### 値を暗号化/複合化する
+設定を利用するクライアント側は、設定がローカルのファイルとして存在するか、config-serverにあるか、暗号化されているかどうかを気にせず、
+設定を読み込む方法は同じ。
+
+```
+@Value("${xxxxx}")
+```
+
+### 暗号化・複合化エンドポイント
 ```
 curl -d localhost:8888/encrypt 'Hello World!'
 ```
@@ -116,3 +126,5 @@ curl -d localhost:8888/encrypt 'Hello World!'
 ```
 curl -d localhost:8888/decrypt 'xxxxxxxxxxxxxxxx'
 ```
+
+
