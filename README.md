@@ -123,7 +123,8 @@ keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O
 
 ### 暗号化・複合化エンドポイント
 ```
-curl -d localhost:8888/encrypt 'Hello World!'
+curl -d localhost:8888/encrypt 'hello'
+curl -d localhost:8888/encrypt 'world'
 ```
 
 ```
@@ -131,12 +132,9 @@ curl -d localhost:8888/decrypt 'xxxxxxxxxxxxxxxx'
 ```
 
 ### 試す
-- http://localhost:8081/username
-- http://localhost:8081/h2-console
+- http://localhost:????/message
 
-- http://localhost:8082/username
-- http://localhost:8082/h2-console
-
+※暗号化されたメッセージが複合化されて見れる
 
 # spring-cloud-netflix
 - The patterns provided include Service Discovery (Eureka)
@@ -155,12 +153,16 @@ curl -d localhost:8888/decrypt 'xxxxxxxxxxxxxxxx'
 - Eureka Client(自分自身をService Registryに登録する)
 - Feign Client
 
+※サービス間連携のためのホスト名・ポート番号ハードコーディングしなくてよくなる
+※portが自動で張られるため、ローカルででもrolling updateが簡単に実現できる
 ### Eureka Server
 Dash Board (http://localhost:8761/)
 
 ### Eureka Client
-http://localhost:????/hello
-※port番号はEureka Server Dashboardから確認できます。
+- HelloService
+- WorldService
 
+http://localhost:????/message
+※port番号はEureka Server Dashboardから確認できます。
 ### Feign Client
-http://localhost:8092/helloworld
+HelloWorldService(http://localhost:8080)
