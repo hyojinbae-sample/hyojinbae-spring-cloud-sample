@@ -1,4 +1,7 @@
-# クラウドネイティブアプリケーション
+# ~~世界で一番複雑な~~HelloWorld
+クラウドネイティブ版HelloWorld
+
+# クラウドネイティブアプリケーションとは
 ![Cloud Native](https://d1fto35gcfffzn.cloudfront.net/images/topics/cloudnative/diagram-cloud-native.png)
 
 - [クラウドネイティブアプリケーションとは](https://pivotal.io/jp/cloud-native)
@@ -133,3 +136,31 @@ curl -d localhost:8888/decrypt 'xxxxxxxxxxxxxxxx'
 
 - http://localhost:8082/username
 - http://localhost:8082/h2-console
+
+
+# spring-cloud-netflix
+- The patterns provided include Service Discovery (Eureka)
+- Circuit Breaker (Hystrix)
+- Intelligent Routing (Zuul) 
+- Client Side Load Balancing (Ribbon)
+
+[Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/)
+
+## eureka
+[Introduction to Spring Cloud Netflix – Eureka](http://www.baeldung.com/spring-cloud-netflix-eureka)
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7w0eGIRzTzN5H1BJgx2iwJLhQ8MeLL7mckIi3V37poLgocTbHRg)
+
+- Service Registry(Eureka Server)
+- Eureka Client(自分自身をService Registryに登録する)
+- Feign Client
+
+### Eureka Server
+Dash Board (http://localhost:8761/)
+
+### Eureka Client
+http://localhost:????/hello
+※port番号はEureka Server Dashboardから確認できます。
+
+### Feign Client
+http://localhost:8092/helloworld
