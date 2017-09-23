@@ -12,8 +12,6 @@
 
     <modules>
         <module>hello-world-config-server</module>
-        <module>hello-world-config-client1</module>
-        <module>hello-world-config-client2</module>
     </modules>
 
     <parent>
