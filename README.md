@@ -111,7 +111,9 @@ cd "C:\Program Files\Java\jdk1.8.0_144\bin"
 keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O=Organization,L=City,S=State,C=US" -keypass changeme -keystore %HOMEPATH%\server.jks -storepass letmein -validity 365
 ```
 
-※現時点で1.3.2.RELEASEでは動かないため、1.3.1.RELEASEを利用している
+### configサーバの/src/main/resources/bootstrap.yml
+複合されなくてはまっていたが、encryptから始まる設定をapplication.ymlからbootstrap.ymlに移動したら複合化できた
+※[application.ymlには定義しても機能しない](https://github.com/spring-cloud/spring-cloud-config/issues/795#issuecomment-332223035)
 
 ### 値を暗号化/複合化する
 設定を利用するクライアント側は、設定がローカルのファイルとして存在するか、config-serverにあるか、暗号化されているかどうかを気にせず、
